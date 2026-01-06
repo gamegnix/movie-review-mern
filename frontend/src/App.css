@@ -1,0 +1,35 @@
+body {
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 400px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.movie-card {
+  background-color: #1f1f1f;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
