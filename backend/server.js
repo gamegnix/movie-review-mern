@@ -3,42 +3,38 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+// Routes
+const authRoutes = require("./routes/auth");
+const movieRoutes = require("./routes/movies");
+const reviewRoutes = require("./routes/reviews");
+
+// Create app
 const app = express();
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+// Auth routes
+app.use("/api/auth", authRoutes);
 
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+// Movie routes
+app.use("/api/movies", movieRoutes);
 
-// Movie schema
-const movieSchema = new mongoose.Schema({
-  title: String,
-  review: String,
-  rating: Number
-});
+// Review routes
+app.use("/api/reviews", reviewRoutes);
 
-const Movie = mongoose.model("Movie", movieSchema);
-
-// Add movie route
-app.post("/addMovie", async (req, res) => {
-  const movie = new Movie(req.body);
-  await movie.save();
-  res.send("Movie added successfully");
-});
-
-// Get all movies
-app.get("/movies", async (req, res) => {
-  const movies = await Movie.find();
-  res.json(movies);
-});
-
-// Start server
+/* =========================
+   SERVER + DB
+========================= */
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("MongoDB Connected");
+    app.listen(PORT, () =>
+      console.log(`Server running on port ${PORT}`)
+    );
+  })
+  .catch(err => console.log(err));
