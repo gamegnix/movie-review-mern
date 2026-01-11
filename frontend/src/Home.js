@@ -7,7 +7,7 @@ import MovieCard from "./MovieCard";
 import LoginModal from "./LoginModal";
 import "./App.css";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://movie-review-mern.onrender.com/api";
 
 function Home() {
   const navigate = useNavigate();

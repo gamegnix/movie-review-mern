@@ -5,7 +5,7 @@ import { ThemeContext } from "./context/ThemeContext";
 import { AuthContext } from "./context/AuthContext";
 import "./App.css";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://movie-review-mern.onrender.com/api";
 
 function MovieDetails() {
   const navigate = useNavigate();
